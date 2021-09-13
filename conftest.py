@@ -35,7 +35,6 @@ def browser(request):
     else:
         raise pytest.UsageError("При запуске не верно указан или отсутствует параметр --browser-name\n"
                                 "Используете с допустимыми значениями: chrome или firefox")
-    driver.implicitly_wait(5)  # Зададим время неявного ожидания элементов
     yield driver
     print("...закрываем браузер...")
     driver.quit()
