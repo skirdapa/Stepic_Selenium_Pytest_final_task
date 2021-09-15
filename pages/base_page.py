@@ -6,6 +6,12 @@ from selenium.common.exceptions import NoAlertPresentException
 
 class BasePage:
     def __init__(self, browser, url, timeout=10):
+        """Базовая страница
+
+        :param browser: фикстура браузера
+        :param url: адрес страницы
+        :param timeout: время неявного ожидания
+        """
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
