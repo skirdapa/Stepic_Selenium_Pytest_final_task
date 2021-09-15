@@ -1,3 +1,5 @@
+from selenium.common.exceptions import NoAlertPresentException
+
 from pages.base_page import BasePage
 from .locators import ProductPageLocators
 
@@ -7,7 +9,10 @@ class ProductPage(BasePage):
     def add_product_to_basket(self):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_basket_button.click()
-        self.solve_quiz_and_get_code()
+        try:
+            self.solve_quiz_and_get_code()
+        except NoAlertPresentException:
+            pass
 
     def should_be_add_to_basket_message(self):
         assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_MESSAGE), \
@@ -30,5 +35,11 @@ class ProductPage(BasePage):
         assert product_title_in_basket == product_title_on_page, \
             "Название товара в корзине не совпадает с названием товара на странице"
 
+    def should_not_be_success_message_not_present(self):
+        assert self.is_not_element_present(*ProductPageLocators.ADD_TO_BASKET_MESSAGE), \
+            "Сообщение об успехе появилось, а не должно быть"
 
+    def should_not_be_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.ADD_TO_BASKET_MESSAGE), \
+            "Сообщение об успехе видно, а должно было исчезнуть или не появиться"
 
