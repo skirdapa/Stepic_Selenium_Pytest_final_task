@@ -18,6 +18,7 @@ links = ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?pr
          "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
          "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"]
 
+link_without_promo = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
 login_link = "http://selenium1py.pythonanywhere.com/accounts/login/"
 
 
@@ -31,7 +32,7 @@ def test_guest_can_add_product_to_basket(browser, link):
     product_page.should_be_product_title_in_basket_is_right()
 
 
-link_without_promo = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+
 
 
 @pytest.mark.xfail(reason="Заведомо падающий тест, сообщение об ошибке и должно появиться")
