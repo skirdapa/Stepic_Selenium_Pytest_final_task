@@ -30,7 +30,6 @@ class TestLoginFromMainPage:
         login_page.should_be_login_page()
 
 
-@pytest.mark.empty_basket
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page = MainPage(browser, link)
     page.open()

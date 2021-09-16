@@ -30,7 +30,6 @@ class LoginPage(BasePage):
         assert "login" in self.browser.current_url, "Это не страница логина: в URL нет слова login"
 
     def should_be_login_form(self):
-        # проверка, что есть форма авторизации на странице
         assert self.is_element_present(*LoginPageLocators.LOGIN_USERNAME_INPUT), \
             "Не найдено поле ввода логина в форме авторизации"
         assert self.is_element_present(*LoginPageLocators.LOGIN_PASSWORD_INPUT), \
