@@ -1,8 +1,26 @@
+from selenium.webdriver.common.by import By
+
 from .base_page import BasePage
 from .locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+
+    def register_new_user(self, email, password):
+        """Регистрируем нового пользователя
+
+        :param email: валидный email адрес
+        :param password: пароль длиннее 9 символов, с буквой, цифрой
+        """
+        email_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_USERNAME_INPUT)
+        email_input.send_keys(email)
+        password_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD_INPUT)
+        password_input.send_keys(password)
+        password_confirm_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_CONFIRM_PASSWORD_INPUT)
+        password_confirm_input.send_keys(password)
+        button_submit = self.browser.find_element(*LoginPageLocators.REGISTRATION_SUBMIT_BUTTON)
+        button_submit.click()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
