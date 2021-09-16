@@ -1,5 +1,6 @@
 import pytest
 
+from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 
@@ -62,3 +63,14 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     product_page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
+
+
+@pytest.mark.empty_basket
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    product_page = ProductPage(browser, link_without_promo)
+    product_page.open()
+    product_page.go_to_basket_page()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_product_not_exists()
+    basket_page.should_be_product_not_exists()
+
